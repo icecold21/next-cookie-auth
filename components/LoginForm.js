@@ -1,4 +1,5 @@
 import { loginUser } from '../lib/auth';
+import Router from 'next/router';
 
 export default class LoginForm extends React.Component {
   state = {
@@ -15,7 +16,9 @@ export default class LoginForm extends React.Component {
     console.log(this.state);
 
     const { email, password } = this.state;
-    loginUser(email, password);
+    loginUser(email, password).then(() => {
+      Router.push('/profile');
+    });
   }
 
   render () {
